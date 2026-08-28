@@ -123,19 +123,23 @@ export function SiteHeader() {
             <WhatsAppIcon className="h-5 w-5" />
           </a>
 
-          <Magnetic className="hidden sm:inline-flex">
-            <Link
-              href="/cotizar"
-              className={`group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
-                light
-                  ? "bg-white text-ink hover:bg-magenta-50"
-                  : "bg-magenta-500 text-white hover:bg-magenta-600"
-              }`}
-            >
-              Cotizar
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Magnetic>
+          {/* El wrapper controla la visibilidad; Magnetic fuerza display inline
+              por style y anularía un `hidden` puesto directamente sobre él. */}
+          <div className="hidden sm:block">
+            <Magnetic>
+              <Link
+                href="/cotizar"
+                className={`group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+                  light
+                    ? "bg-white text-ink hover:bg-magenta-50"
+                    : "bg-magenta-500 text-white hover:bg-magenta-600"
+                }`}
+              >
+                Cotizar
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </Magnetic>
+          </div>
 
           <button
             onClick={() => setOpen((v) => !v)}

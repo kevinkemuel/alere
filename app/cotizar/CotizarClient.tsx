@@ -67,9 +67,9 @@ export function CotizarClient() {
   }
 
   return (
-    <Container className="grid gap-10 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:py-16">
+    <Container className="grid grid-cols-1 gap-10 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:py-16">
       {/* Formulario + productos */}
-      <div>
+      <div className="min-w-0">
         <form
           onSubmit={submit}
           className="rounded-2xl border border-line bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8"
@@ -227,7 +227,7 @@ export function CotizarClient() {
       </div>
 
       {/* Info de contacto */}
-      <aside className="lg:pt-2">
+      <aside className="min-w-0 lg:pt-2">
         <div className="relative overflow-hidden rounded-2xl bg-brand-gradient p-8 text-white shadow-[var(--shadow-brand)]">
           <div aria-hidden className="dot-grid-dark absolute inset-0 opacity-30" />
           <h2 className="font-display relative text-xl font-semibold">
