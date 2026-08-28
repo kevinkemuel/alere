@@ -1,0 +1,71 @@
+// Esquema Prisma — SUBCONJUNTO DE SOLO LECTURA de la base de Komercio
+// (mi-negocio-ve, Postgres de Supabase). Solo declara las tablas/campos que
+// el catálogo de Aalere's necesita leer. No se ejecutan migraciones desde
+// este proyecto: la fuente de verdad del esquema es la app de Komercio.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Negocio {
+  id          String  @id
+  nombre      String
+  descripcion String?
+  logoUrl     String?
+  telefono    String?
+  instagram   String?
+
+  catalogoToken        String   @unique
+  catalogoSlug         String?  @unique
+  catalogoMostrarBs    Boolean  @default(true)
+  catalogoMostrarStock Boolean  @default(false)
+  catalogoTema         String   @default("verde")
+
+  productos Producto[]
+}
+
+model Producto {
+  id          String  @id
+  negocioId   String
+  nombre      String
+  descripcion String?
+  codigo      String?
+  categoria   String?
+  imagenUrl   String?
+
+  precioVentaUSD Decimal @db.Decimal(12, 2)
+  stockActual    Decimal @default(0) @db.Decimal(12, 3)
+  stockMinimo    Decimal @default(5) @db.Decimal(12, 3)
+
+  activo Boolean @default(true)
+
+  negocio    Negocio             @relation(fields: [negocioId], references: [id])
+  categorias ProductoCategoria[]
+
+  @@index([negocioId])
+}
+
+model Categoria {
+  id     String @id
+  nombre String
+  icono  String @default("")
+
+  productos ProductoCategoria[]
+}
+
+model ProductoCategoria {
+  id          String @id
+  productoId  String
+  categoriaId String
+
+  producto  Producto  @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+
+  @@unique([productoId, categoriaId])
+  @@index([productoId])
+  @@index([categoriaId])
+}

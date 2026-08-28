@@ -1,0 +1,54 @@
+/**
+ * Configuración central del sitio Aalere's.
+ * ─────────────────────────────────────────────────────────────
+ * Todos los datos de contacto y de negocio viven aquí para que
+ * reemplazar los PLACEHOLDERS sea un cambio de un solo archivo.
+ */
+
+export const site = {
+  name: "Aalere's",
+  legalName: "Aalere's — Laboratorio y Suministros",
+  tagline: "Laboratorio y Suministros",
+  description:
+    "Suministros para laboratorios clínicos: reactivos, consumibles, cristalería, equipos y bioseguridad. Catálogo con precios y disponibilidad en tiempo real.",
+  url: "https://aaleres.com", // TODO: dominio real
+
+  // Identificador del catálogo compartido de Komercio para Aalere's: el slug
+  // personalizado ("alere") o el token aleatorio. Es público (va en la URL:
+  // /catalogo/alere). La consulta acepta cualquiera de los dos.
+  catalogoId: process.env.NEXT_PUBLIC_CATALOGO_ID ?? "alere",
+
+  // ── Contacto (PLACEHOLDERS — reemplazar) ──────────────────
+  contact: {
+    // WhatsApp en formato internacional SIN "+", espacios ni guiones.
+    // Ej. Venezuela: 58 + 412 + 1234567 => "584121234567"
+    whatsapp: "584120000000", // TODO: número real
+    whatsappLabel: "+58 412-000-0000",
+    email: "ventas@aaleres.com", // TODO: correo real
+    phone: "+58 412-000-0000", // TODO
+    address: "Ciudad, Venezuela", // TODO: dirección/ciudad
+    coverage: "Cobertura nacional", // TODO: zonas de cobertura
+    hours: "Lun a Vie, 8:00 a.m. – 5:00 p.m.",
+  },
+
+  social: {
+    instagram: "https://instagram.com/", // TODO
+    facebook: "", // opcional
+  },
+
+  // ── Moneda para mostrar precios ───────────────────────────
+  currency: {
+    code: "USD",
+    symbol: "$",
+    locale: "es-VE",
+  },
+} as const;
+
+/** Construye una URL de WhatsApp (wa.me) con mensaje prellenado. */
+export function whatsappUrl(message?: string): string {
+  const base = `https://wa.me/${site.contact.whatsapp}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
+
+/** Mensaje por defecto para el botón flotante y CTAs genéricos. */
+export const defaultWhatsappMessage = `Hola ${site.name}, me gustaría solicitar información sobre sus suministros de laboratorio.`;

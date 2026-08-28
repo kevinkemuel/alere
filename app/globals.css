@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Aalere's — Sistema de diseño "Bicolor editorial"
+   Papel cálido + momentos oscuros plomo-vino · acento magenta
+   Motivo: el pliegue / chevron del isotipo "A"
+   Tipografía: Space Grotesk (display) · Inter (texto) · mono (datos)
+   ============================================================ */
+
+@theme {
+  /* ── Escala magenta ────────────────────────────────────── */
+  --color-magenta-50: #fdeef6;
+  --color-magenta-100: #fbd6e9;
+  --color-magenta-200: #f4a9cf;
+  --color-magenta-300: #e871ad;
+  --color-magenta-400: #d23f8b;
+  --color-magenta-500: #9e0864; /* PRIMARIO */
+  --color-magenta-600: #870655;
+  --color-magenta-700: #6b0645;
+  --color-magenta-800: #4d0431;
+  --color-magenta-900: #310220;
+  --color-magenta-glow: #ff3fa2; /* acento vibrante sobre oscuro */
+
+  /* ── Neutros ───────────────────────────────────────────── */
+  --color-paper: #faf6f4; /* fondo cálido principal */
+  --color-paper-2: #f1e9ec; /* superficie ligeramente más profunda */
+  --color-ink: #17060f; /* plomo-vino casi negro (texto/oscuro) */
+  --color-ink-2: #230a19; /* superficie oscura */
+  --color-ink-3: #360f26; /* superficie oscura elevada */
+  --color-support: #7a6a72; /* gris cálido de apoyo */
+  --color-silver: #d7d2d5;
+
+  /* ── Hairlines ─────────────────────────────────────────── */
+  --color-line: color-mix(in oklab, var(--color-ink) 12%, transparent);
+  --color-line-strong: color-mix(in oklab, var(--color-ink) 22%, transparent);
+  --color-line-dark: color-mix(in oklab, white 14%, transparent);
+
+  /* ── Tipografía ────────────────────────────────────────── */
+  --font-display: var(--font-space), "Space Grotesk", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-mono-jb), "JetBrains Mono", ui-monospace, "SF Mono",
+    Menlo, monospace;
+
+  /* ── Radios (más contenidos, menos "burbuja") ──────────── */
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+
+  /* ── Sombras (discretas, editoriales) ──────────────────── */
+  --shadow-soft: 0 1px 2px rgba(23, 6, 15, 0.05),
+    0 12px 34px -18px rgba(23, 6, 15, 0.22);
+  --shadow-brand: 0 18px 44px -20px rgba(158, 8, 100, 0.5);
+  --shadow-float: 0 24px 70px -24px rgba(23, 6, 15, 0.4);
+
+  /* ── Gradientes ────────────────────────────────────────── */
+  --gradient-brand: linear-gradient(135deg, #6b0645 0%, #9e0864 52%, #d23f8b 100%);
+  --gradient-ink: radial-gradient(
+      120% 120% at 12% 0%,
+      #360f26 0%,
+      #230a19 42%,
+      #17060f 100%
+    );
+
+  /* ── Easing / duración estándar ────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Animaciones ───────────────────────────────────────── */
+  --animate-marquee: marquee 38s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
+/* ── Base ─────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-magenta-500);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-magenta-500);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Titulares con la display */
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01";
+}
+
+/* ── Utilidades de marca ──────────────────────────────────── */
+.bg-brand-gradient {
+  background-image: var(--gradient-brand);
+}
+.bg-ink-gradient {
+  background-image: var(--gradient-ink);
+}
+.text-brand-gradient {
+  background-image: linear-gradient(120deg, #9e0864, #ff3fa2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Etiqueta técnica (mono, versalitas) — el aire "de laboratorio" */
+.label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* Numeración de secciones estilo índice */
+.index-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Grano/ruido sutil de textura (overlay global) */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Rejilla de puntos (fondos técnicos) */
+.dot-grid {
+  background-image: radial-gradient(
+    var(--color-line-strong) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+.dot-grid-dark {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.09) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* Línea que se dibuja al revelar (para reveals de reglas) */
+.hairline {
+  border-color: var(--color-line);
+}
+
+/* Marquee accesible */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
