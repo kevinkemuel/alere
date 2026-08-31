@@ -11,7 +11,7 @@ export const site = {
   tagline: "Laboratorio y Suministros",
   description:
     "Suministros para laboratorios clínicos: reactivos, consumibles, cristalería, equipos y bioseguridad. Catálogo con precios y disponibilidad en tiempo real.",
-  url: "https://aaleres.com", // TODO: dominio real
+  url: "https://alere-suministros.vercel.app", // provisional (Vercel); cambiar por dominio propio
 
   // Identificador del catálogo compartido de Komercio para Alere's: el slug
   // personalizado ("alere") o el token aleatorio. Es público (va en la URL:
