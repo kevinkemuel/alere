@@ -84,7 +84,7 @@ export function CatalogoClient({
         <div className="mx-auto mt-6 max-w-7xl">
           <p className="rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm text-amber-800">
             <strong>Vista previa:</strong> mostrando datos de muestra. Con el
-            catálogo real conectado, aquí aparecen los productos de Aalere&apos;s
+            catálogo real conectado, aquí aparecen los productos de Alere&apos;s
             con precios actualizados.
           </p>
         </div>

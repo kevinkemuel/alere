@@ -12,7 +12,7 @@ import { CTASection } from "@/components/home/CTASection";
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "Conoce a Aalere's, tu aliado en suministros para laboratorios clínicos: reactivos, consumibles, equipos y bioseguridad con respaldo y asesoría.",
+    "Conoce a Alere's, tu aliado en suministros para laboratorios clínicos: reactivos, consumibles, equipos y bioseguridad con respaldo y asesoría.",
 };
 
 const VALORES = [
@@ -49,13 +49,14 @@ export default function NosotrosPage() {
               <ChevronMark className="h-3.5 w-3.5" /> Nosotros
             </p>
             <h1 className="font-display mt-6 text-[clamp(2.4rem,5.5vw,4.25rem)] font-semibold leading-[1.0] tracking-tight">
-              Tu proveedor de confianza en insumos de laboratorio
+              Somos el proveedor que tu laboratorio necesita
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-              En Aalere&apos;s abastecemos a laboratorios clínicos con reactivos,
-              consumibles, cristalería, equipos y bioseguridad. Combinamos
-              disponibilidad, precios claros y asesoría cercana para que tu
-              operación nunca se detenga.
+              En Alere&apos;s garantizamos el abastecimiento continuo de
+              laboratorios clínicos con reactivos, consumibles, equipos,
+              cristalería y material de bioseguridad de alta calidad. Combinamos
+              disponibilidad inmediata, transparencia comercial y asesoría técnica
+              especializada para que tu operación nunca se detenga.
             </p>
           </div>
           <div className="relative mx-auto hidden w-64 md:block">
@@ -78,19 +79,21 @@ export default function NosotrosPage() {
             <SectionHeading
               index="01"
               eyebrow="Quiénes somos"
-              title="Especialistas en suministros para laboratorio clínico"
+              title="Especialistas en suministros para laboratorios clínicos"
             />
             <div className="mt-6 space-y-4 text-support">
               <p>
-                Nacimos para resolver un problema cotidiano: conseguir insumos de
-                calidad, al precio correcto y en el momento justo. Por eso
-                construimos un catálogo con disponibilidad y precios actualizados,
-                y un proceso de cotización rápido y transparente.
+                Nacimos con el propósito de optimizar el abastecimiento del sector
+                salud: garantizamos insumos de alta calidad, precios transparentes
+                y entregas oportunas. Nuestra gestión está respaldada por la
+                dirección técnica de una Licenciada en Bioanálisis, lo que nos
+                permite entender a profundidad las exigencias de tu trabajo diario
+                y ofrecerte un asesoramiento especializado.
               </p>
               <p>
-                Atendemos desde laboratorios pequeños hasta centros de alto
-                volumen, con la misma prioridad: que tengas lo que necesitas para
-                seguir trabajando.
+                Atendemos desde laboratorios independientes hasta centros de alto
+                volumen con el mismo compromiso: brindarte la continuidad operativa
+                que tu laboratorio exige.
               </p>
             </div>
             <Link

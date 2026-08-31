@@ -7,12 +7,12 @@ const POINTS = [
   {
     icon: Boxes,
     title: "Catálogo en tiempo real",
-    desc: "Precios y existencias sincronizados con el inventario. Lo que ves es lo que hay.",
+    desc: "Inventario sincronizado en tiempo real: precios actualizados y existencias garantizadas para una visualización exacta y confiable de la disponibilidad.",
   },
   {
     icon: Tag,
     title: "Precios transparentes",
-    desc: "Sin sorpresas. Consulta el precio de cada producto y cotiza sólo lo que necesitas.",
+    desc: "Consulta el costo exacto por producto y optimiza la cotización de tus requerimientos con absoluta claridad.",
   },
   {
     icon: GraduationCap,
@@ -49,8 +49,9 @@ export function ValueProps() {
                 Un aliado serio para tu laboratorio.
               </h2>
               <p className="mt-4 max-w-md text-white/80">
-                Disponibilidad real, precios claros y asesoría cercana para que
-                nunca te falte lo esencial.
+                Garantizar el respaldo oportuno al sector salud, asegurando a cada
+                laboratorio la precisión diagnóstica que sus pacientes merecen, con
+                disponibilidad real y atención directa.
               </p>
             </div>
           </Reveal>

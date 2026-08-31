@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "cristalería",
     "bioseguridad",
     "equipos de laboratorio",
-    "Aalere's",
+    "Alere's",
   ],
   openGraph: {
     type: "website",

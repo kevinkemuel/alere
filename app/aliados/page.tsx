@@ -10,7 +10,7 @@ import { catalog } from "@/lib/catalog";
 export const metadata: Metadata = {
   title: "Aliados y marcas",
   description:
-    "Marcas y fabricantes con los que trabaja Aalere's para ofrecer suministros de laboratorio con respaldo y calidad.",
+    "Marcas y fabricantes con los que trabaja Alere's para ofrecer suministros de laboratorio con respaldo y calidad.",
 };
 
 export const dynamic = "force-dynamic";

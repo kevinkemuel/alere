@@ -39,9 +39,9 @@ const STATS = [
 ];
 
 const HERO_LINES = [
-  { text: "Insumos de", grad: false },
-  { text: "laboratorio", grad: false },
-  { text: "con precisión.", grad: true },
+  { text: "Insumos para laboratorio", grad: false },
+  { text: "de alta calidad", grad: false },
+  { text: "y precisión.", grad: true },
 ];
 
 export function Hero() {
@@ -119,10 +119,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-white/70"
           >
-            Reactivos, consumibles, equipos y bioseguridad para laboratorios
-            clínicos. Un catálogo con{" "}
-            <span className="text-white">precio y disponibilidad reales</span>, y
-            cotización directa por WhatsApp.
+            Distribuimos reactivos, consumibles y equipos para laboratorios
+            clínicos. Contamos con un amplio portafolio con{" "}
+            <span className="text-white">precios y disponibilidad</span>.
+            Contáctanos y solicita tu cotización directa por WhatsApp.
           </motion.p>
 
           <motion.div

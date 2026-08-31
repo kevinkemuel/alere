@@ -27,7 +27,7 @@ export function Logo({
   variant = "magenta",
   className = "h-10 w-auto",
   priority = false,
-  alt = "Aalere's — Laboratorio y Suministros",
+  alt = "Alere's — Laboratorio y Suministros",
 }: {
   variant?: Variant;
   className?: string;

@@ -1,19 +1,19 @@
 /**
- * Configuración central del sitio Aalere's.
+ * Configuración central del sitio Alere's.
  * ─────────────────────────────────────────────────────────────
  * Todos los datos de contacto y de negocio viven aquí para que
  * reemplazar los PLACEHOLDERS sea un cambio de un solo archivo.
  */
 
 export const site = {
-  name: "Aalere's",
-  legalName: "Aalere's — Laboratorio y Suministros",
+  name: "Alere's",
+  legalName: "Alere's — Laboratorio y Suministros",
   tagline: "Laboratorio y Suministros",
   description:
     "Suministros para laboratorios clínicos: reactivos, consumibles, cristalería, equipos y bioseguridad. Catálogo con precios y disponibilidad en tiempo real.",
   url: "https://aaleres.com", // TODO: dominio real
 
-  // Identificador del catálogo compartido de Komercio para Aalere's: el slug
+  // Identificador del catálogo compartido de Komercio para Alere's: el slug
   // personalizado ("alere") o el token aleatorio. Es público (va en la URL:
   // /catalogo/alere). La consulta acepta cualquiera de los dos.
   catalogoId: process.env.NEXT_PUBLIC_CATALOGO_ID ?? "alere",
@@ -22,18 +22,18 @@ export const site = {
   contact: {
     // WhatsApp en formato internacional SIN "+", espacios ni guiones.
     // Ej. Venezuela: 58 + 412 + 1234567 => "584121234567"
-    whatsapp: "584120000000", // TODO: número real
-    whatsappLabel: "+58 412-000-0000",
-    email: "ventas@aaleres.com", // TODO: correo real
-    phone: "+58 412-000-0000", // TODO
-    address: "Ciudad, Venezuela", // TODO: dirección/ciudad
-    coverage: "Cobertura nacional", // TODO: zonas de cobertura
+    whatsapp: "584142682825",
+    whatsappLabel: "+58 414-268-2825",
+    email: "ventasalere@outlook.com",
+    phone: "+58 414-268-2825",
+    address: "Caracas, Venezuela",
+    coverage: "Cobertura nacional",
     hours: "Lun a Vie, 8:00 a.m. – 5:00 p.m.",
   },
 
   social: {
-    instagram: "https://instagram.com/", // TODO
-    facebook: "", // opcional
+    instagram: "", // sin Instagram por ahora (el ícono se oculta si está vacío)
+    facebook: "",
   },
 
   // ── Moneda para mostrar precios ───────────────────────────

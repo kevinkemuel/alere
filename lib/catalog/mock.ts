@@ -337,7 +337,7 @@ function toProducto(r: Row): Producto {
 export const mockSource: CatalogSource = {
   async getMeta() {
     return {
-      nombre: "Aalere's (datos de muestra)",
+      nombre: "Alere's (datos de muestra)",
       mostrarStock: true,
       mostrarBs: false,
     };

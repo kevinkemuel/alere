@@ -34,7 +34,7 @@ export function CotizarClient() {
 
   function buildMessage() {
     const L: string[] = [];
-    L.push("*Solicitud de cotización — Aalere's*", "");
+    L.push("*Solicitud de cotización — Alere's*", "");
     L.push(`*Cliente:* ${form.nombre}`);
     if (form.empresa) L.push(`*Laboratorio/Empresa:* ${form.empresa}`);
     if (form.email) L.push(`*Correo:* ${form.email}`);

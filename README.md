@@ -1,8 +1,8 @@
-# Aalere's — Sitio web
+# Alere's — Sitio web
 
-Sitio web multipágina para **Aalere's — Laboratorio y Suministros**: presenta la
+Sitio web multipágina para **Alere's — Laboratorio y Suministros**: presenta la
 marca y muestra el catálogo de productos (precio y stock) consumiendo la misma
-fuente de datos que usa Komercio, con el diseño de marca de Aalere's.
+fuente de datos que usa Komercio, con el diseño de marca de Alere's.
 
 **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · TypeScript ·
 `@supabase/supabase-js` · `lucide-react`.
@@ -42,7 +42,7 @@ Todo el sitio ya consume un **adaptador** (`lib/catalog/`). Conectar la fuente
 real es un cambio acotado:
 
 1. **Inspeccionar** la URL pública del catálogo compartido de Komercio para
-   Aalere's (DevTools → Network → Fetch/XHR) y confirmar:
+   Alere's (DevTools → Network → Fetch/XHR) y confirmar:
    - Nombre de la tabla (se asume `productos_catalogo`).
    - Nombres de columnas y relaciones (fotos, categorías).
    - Valores que marcan visible/publicado (se asume `'1'`).
