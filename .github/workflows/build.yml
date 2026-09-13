@@ -1,0 +1,54 @@
+name: Build .next para cPanel
+
+# Compila el proyecto en Linux (mismo SO que el hosting) y deja el resultado
+# (.next) commiteado en el repo, para que el servidor solo tenga que hacer
+# `git pull` + reiniciar, sin compilar (el hosting no tiene RAM para ello).
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-cpanel
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci --include=dev
+
+      - name: Generar Prisma Client
+        run: npx prisma generate
+
+      - name: Compilar (next build)
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Commitear .next al repo
+        run: |
+          rm -rf .next/cache
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f .next
+          if git diff --cached --quiet; then
+            echo "Sin cambios en .next"
+          else
+            git commit -m "build: .next compilado para cPanel [skip ci]"
+            git push
+          fi
