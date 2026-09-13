@@ -1,0 +1,21 @@
+1:"$Sreact.fragment"
+2:I[7753,["955","static/chunks/app/cotizar/page-147ea7ac35f8b38a.js"],"CotizarClient"]
+3:I[484,[],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[484,[],"ViewportBoundary"]
+9:I[484,[],"MetadataBoundary"]
+a:I[6869,[],"IconMark"]
+c:I[7121,[],""]
+d:I[4581,[],""]
+7:X
+f:X
+f:C
+0:{"buildId":"5SMqMFDcnLUQUqaj58ogF","data":[{"rsc":["$","$1","c",{"children":[[["$","section",null,{"className":"border-b border-line bg-paper-2 pb-12 pt-30 sm:pb-14","children":["$","div",null,{"className":"mx-auto w-full max-w-7xl px-5 sm:px-8 ","children":[["$","p",null,{"className":"label flex items-center gap-2 text-magenta-500","children":[["$","svg",null,{"viewBox":"0 0 24 24","className":"h-3.5 w-3.5","fill":"none","stroke":"currentColor","strokeWidth":"2.5","strokeLinecap":"round","strokeLinejoin":"round","aria-hidden":"true","children":["$","path",null,{"d":"M4 16 L12 8 L20 16"}]}]," Cotizar / Contacto"]}],["$","h1",null,{"className":"font-display mt-4 text-[clamp(2.4rem,6vw,4.5rem)] font-semibold leading-[0.98] tracking-tight text-ink","children":"Solicita tu cotización"}],["$","p",null,{"className":"mt-5 max-w-2xl text-lg text-support","children":"Cuéntanos qué necesita tu laboratorio. Agrega productos desde el catálogo o describe tu pedido; te respondemos con precios y disponibilidad al momento."}]]}]}],["$","$L2",null,{}]],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Cotizar / Contacto · Alere's"}],["$","meta","1",{"name":"description","content":"Solicita tu cotización de suministros de laboratorio. Arma tu lista de productos y envíala por WhatsApp, o contáctanos directamente."}],["$","meta","2",{"name":"keywords","content":"suministros de laboratorio,reactivos,insumos laboratorio clínico,cristalería,bioseguridad,equipos de laboratorio,Alere's"}],["$","meta","3",{"property":"og:title","content":"Alere's — Laboratorio y Suministros"}],["$","meta","4",{"property":"og:description","content":"Suministros para laboratorios clínicos: reactivos, consumibles, cristalería, equipos y bioseguridad. Catálogo con precios y disponibilidad en tiempo real."}],["$","meta","5",{"property":"og:site_name","content":"Alere's"}],["$","meta","6",{"property":"og:locale","content":"es_VE"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","9",{"name":"twitter:title","content":"Alere's — Laboratorio y Suministros"}],["$","meta","10",{"name":"twitter:description","content":"Suministros para laboratorios clínicos: reactivos, consumibles, cristalería, equipos y bioseguridad. Catálogo con precios y disponibilidad en tiempo real."}],["$","link","11",{"rel":"icon","href":"/icon.png?15b83cb2de908012","type":"image/png","sizes":"1772x1772"}],["$","link","12",{"rel":"apple-touch-icon","href":"/apple-icon.png?15b83cb2de908012","type":"image/png","sizes":"1772x1772"}],["$","$La","13",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"isPartial":"$@e","staleTime":"$7","varyParams":"$f"}],"isUpgradeableISRFallback":false,"a":"$@10","rootVaryParams":null,"needsRuntimeRequest":"$@11"}
+5:null
+11:true
+7:300
+7:C
+10:0
+b:"$undefined"
+e:"$undefined"
+6:"$undefined"

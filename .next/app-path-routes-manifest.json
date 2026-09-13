@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/_global-error/page": "/_global-error",
+  "/apple-icon.png/route": "/apple-icon.png",
+  "/icon.png/route": "/icon.png",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/aliados/page": "/aliados",
+  "/catalogo/page": "/catalogo",
+  "/cotizar/page": "/cotizar",
+  "/page": "/",
+  "/nosotros/page": "/nosotros"
+}

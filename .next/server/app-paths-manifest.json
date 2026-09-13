@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/apple-icon.png/route": "app/apple-icon.png/route.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/aliados/page": "app/aliados/page.js",
+  "/catalogo/page": "app/catalogo/page.js",
+  "/cotizar/page": "app/cotizar/page.js",
+  "/page": "app/page.js",
+  "/nosotros/page": "app/nosotros/page.js"
+}

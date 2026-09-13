@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://alere-suministros.vercel.app/sitemap.xml
