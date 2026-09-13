@@ -7,14 +7,14 @@ import {
   calcDisponibilidad,
 } from "./types";
 import { mockSource } from "./mock";
-import { getSupabase } from "../supabase";
+import { SUPABASE_URL, SUPABASE_KEY, supabaseConfigured } from "../supabase";
 import { site } from "../site";
 import { toNumber } from "../format";
 
 /**
- * Fuente de datos vía API REST de Supabase (HTTPS).
- * Espeja la lógica de `db.ts` (Prisma) pero sin conexión directa a Postgres.
- * SOLO LECTURA. Ver `lib/supabase.ts` para las variables de entorno.
+ * Fuente de datos vía API REST de Supabase (PostgREST) con `fetch` nativo.
+ * Funciona por HTTPS (443), evitando el bloqueo del puerto de Postgres y la
+ * dependencia de @supabase/supabase-js (que exige Node 22+). SOLO LECTURA.
  */
 
 function logErr(where: string, e: unknown) {
@@ -78,6 +78,25 @@ function toProducto(p: RawProducto): Producto {
   };
 }
 
+/** GET a la API REST de Supabase. */
+async function rest<T>(path: string, params: Record<string, string>): Promise<T> {
+  const qs = new URLSearchParams(params).toString();
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}?${qs}`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      Accept: "application/json",
+    },
+    // Datos en vivo (precios/stock); sin caché.
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`REST ${path} → ${res.status} ${body.slice(0, 200)}`);
+  }
+  return (await res.json()) as T;
+}
+
 // Carga cacheada por request (dedup entre getMeta/getMarcas/getProductos).
 const loadNegocio = cache(
   async (): Promise<{
@@ -86,52 +105,51 @@ const loadNegocio = cache(
     catalogoMostrarStock: boolean;
     catalogoMostrarBs: boolean;
   } | null> => {
-    const sb = getSupabase();
-    if (!sb) return null;
+    if (!supabaseConfigured) return null;
     const id = site.catalogoId;
-    const { data, error } = await sb
-      .from("Negocio")
-      .select("id, nombre, catalogoMostrarStock, catalogoMostrarBs")
-      .or(`catalogoToken.eq.${id},catalogoSlug.eq.${id}`)
-      .limit(1)
-      .maybeSingle();
-    if (error) throw error;
-    return data;
+    const rows = await rest<
+      {
+        id: string;
+        nombre: string;
+        catalogoMostrarStock: boolean;
+        catalogoMostrarBs: boolean;
+      }[]
+    >("Negocio", {
+      select: "id,nombre,catalogoMostrarStock,catalogoMostrarBs",
+      or: `(catalogoToken.eq.${id},catalogoSlug.eq.${id})`,
+      limit: "1",
+    });
+    return rows[0] ?? null;
   }
 );
 
-const PRODUCTO_COLS =
-  "id, nombre, descripcion, imagenUrl, imagenesExtra, precioVentaUSD, stockActual, stockMinimo";
-
 const cargarProductos = cache(async (): Promise<Producto[]> => {
-  const sb = getSupabase();
-  if (!sb) return [];
+  if (!supabaseConfigured) return [];
   const negocio = await loadNegocio();
   if (!negocio) return [];
 
-  // Intento con categorías embebidas (relaciones FK de PostgREST).
-  const withCats = await sb
-    .from("Producto")
-    .select(`${PRODUCTO_COLS}, ProductoCategoria(Categoria(nombre))`)
-    .eq("negocioId", negocio.id)
-    .eq("activo", true)
-    .order("nombre", { ascending: true })
-    .limit(2000);
+  const base = {
+    negocioId: `eq.${negocio.id}`,
+    activo: "eq.true",
+    order: "nombre.asc",
+    limit: "2000",
+  };
 
-  let rows = withCats.data as RawProducto[] | null;
-
-  if (withCats.error) {
-    // Reintento sin el embed por si la relación no resuelve; los productos
-    // (nombre, precio, stock, fotos) son lo importante — las categorías no.
-    const plain = await sb
-      .from("Producto")
-      .select(PRODUCTO_COLS)
-      .eq("negocioId", negocio.id)
-      .eq("activo", true)
-      .order("nombre", { ascending: true })
-      .limit(2000);
-    if (plain.error) throw plain.error;
-    rows = plain.data as RawProducto[] | null;
+  let rows: RawProducto[];
+  try {
+    // Con categorías embebidas (relaciones FK de PostgREST).
+    rows = await rest<RawProducto[]>("Producto", {
+      ...base,
+      select:
+        "id,nombre,descripcion,imagenUrl,imagenesExtra,precioVentaUSD,stockActual,stockMinimo,ProductoCategoria(Categoria(nombre))",
+    });
+  } catch {
+    // Reintento sin el embed por si la relación no resuelve.
+    rows = await rest<RawProducto[]>("Producto", {
+      ...base,
+      select:
+        "id,nombre,descripcion,imagenUrl,imagenesExtra,precioVentaUSD,stockActual,stockMinimo",
+    });
   }
 
   return (rows ?? []).map(toProducto);
