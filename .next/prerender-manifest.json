@@ -34,7 +34,7 @@
       "routeType": "page",
       "response": "complete",
       "compute": "static",
-      "htmlSize": 44939,
+      "htmlSize": 42434,
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -94,7 +94,7 @@
       "routeType": "page",
       "response": "complete",
       "compute": "static",
-      "htmlSize": 56246,
+      "htmlSize": 53741,
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -154,7 +154,7 @@
       "routeType": "page",
       "response": "complete",
       "compute": "static",
-      "htmlSize": 76140,
+      "htmlSize": 73474,
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -246,8 +246,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "07066192e1bdc294431fc93e3b2bb2eb",
-    "previewModeSigningKey": "d9f734014f8247fc4300446d8f11e058b68a49325e3da6ec59d1680cf9440733",
-    "previewModeEncryptionKey": "37f8e05e2c5b50971bb66bbe58903674e6ca9e561c9cf7125b082e651ac403ac"
+    "previewModeId": "44f6c772d6b4f0360ad7d961026a5180",
+    "previewModeSigningKey": "4c4ce19812887cbcb682be9844e242d06342c3e3e4924417e0df1f247a43f649",
+    "previewModeEncryptionKey": "5361fc80be629f934bb4b44f0e897d9843e975a6e9e20ff14bf9d4f6952156b0"
   }
 }
