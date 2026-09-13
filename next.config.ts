@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
   // unavailable". Forzamos 1 worker para no exceder el límite.
   experimental: {
     cpus: 1,
+    // Compila en el proceso principal (no en un worker aparte), para que el
+    // límite de memoria (NODE_OPTIONS) aplique directo y no lo mate el OOM.
+    webpackBuildWorker: false,
+  },
+  // Hosting con poca RAM: la minificación (Terser) dispara el uso de memoria y
+  // hace que el build muera por OOM (SIGKILL). La desactivamos: el JS pesa algo
+  // más, pero el build cabe en la memoria de la cuenta. Aceptable para el sitio.
+  webpack: (config) => {
+    config.optimization.minimize = false;
+    return config;
   },
 };
 
