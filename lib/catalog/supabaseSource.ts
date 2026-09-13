@@ -78,6 +78,12 @@ function toProducto(p: RawProducto): Producto {
   };
 }
 
+// Cachea las respuestas de Supabase por este tiempo (segundos) para no
+// consultar en cada visita y reducir el consumo hacia el proyecto de Komercio.
+// Con stale-while-revalidate, el visitante nunca espera: ve lo cacheado y el
+// refresco ocurre en segundo plano. Precios/stock con retraso máx. de este valor.
+const REVALIDAR_SEGUNDOS = 900; // 15 minutos
+
 /** GET a la API REST de Supabase. */
 async function rest<T>(path: string, params: Record<string, string>): Promise<T> {
   const qs = new URLSearchParams(params).toString();
@@ -87,8 +93,8 @@ async function rest<T>(path: string, params: Record<string, string>): Promise<T>
       Authorization: `Bearer ${SUPABASE_KEY}`,
       Accept: "application/json",
     },
-    // Datos en vivo (precios/stock); sin caché.
-    cache: "no-store",
+    // Caché de datos de Next (se refresca cada REVALIDAR_SEGUNDOS).
+    next: { revalidate: REVALIDAR_SEGUNDOS },
   });
   if (!res.ok) {
     const body = await res.text().catch(() => "");
