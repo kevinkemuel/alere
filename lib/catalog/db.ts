@@ -61,6 +61,7 @@ const loadNegocio = cache(async () => {
           descripcion: true,
           codigo: true,
           imagenUrl: true,
+          imagenesExtra: true,
           precioVentaUSD: true,
           stockActual: true,
           stockMinimo: true,
@@ -81,6 +82,12 @@ const cargarProductos = cache(async (): Promise<Producto[]> => {
     const catsJoin = p.categorias
       .map((c) => c.categoria?.nombre)
       .filter((n): n is string => !!n);
+    // Foto principal + extras → lista sin vacíos ni duplicados, principal primero.
+    const imagenes = [...new Set(
+      [p.imagenUrl, ...(p.imagenesExtra ?? [])]
+        .map((u) => (typeof u === "string" ? u.trim() : ""))
+        .filter((u): u is string => u.length > 0)
+    )];
     return {
       id: p.id,
       sku: null, // `codigo` aquí es fecha de vencimiento, no SKU → se omite
@@ -90,7 +97,8 @@ const cargarProductos = cache(async (): Promise<Producto[]> => {
       precio: p.precioVentaUSD == null ? null : Number(p.precioVentaUSD),
       inventario,
       bajoInventario: bajo,
-      imagen: p.imagenUrl ?? null,
+      imagen: imagenes[0] ?? null,
+      imagenes,
       categorias: catsJoin,
       disponibilidad: calcDisponibilidad(inventario, bajo),
     };

@@ -32,6 +32,8 @@ export interface Producto {
   bajoInventario: number;
   /** URL de la foto principal, o null. */
   imagen: string | null;
+  /** Todas las fotos (principal + extras de Komercio), sin vacíos ni duplicados. Puede estar vacío. */
+  imagenes: string[];
   /** Nombres de categorías a las que pertenece. */
   categorias: string[];
   /** Disponibilidad calculada. */

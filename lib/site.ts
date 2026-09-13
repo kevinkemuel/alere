@@ -24,7 +24,7 @@ export const site = {
     // Ej. Venezuela: 58 + 412 + 1234567 => "584121234567"
     whatsapp: "584142682825",
     whatsappLabel: "+58 414-268-2825",
-    email: "ventasalere@outlook.com",
+    email: "ventas@aleres-lab.com",
     phone: "+58 414-268-2825",
     address: "Caracas, Venezuela",
     coverage: "Cobertura nacional",

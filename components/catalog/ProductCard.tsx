@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Check, Plus } from "lucide-react";
+import { useState } from "react";
+import { Check, Eye, Images, Plus } from "lucide-react";
 import type { Producto } from "@/lib/catalog/types";
 import { formatPrecio } from "@/lib/format";
 import { useQuote } from "@/lib/quote/QuoteContext";
 import { StockBadge } from "./StockBadge";
+import { ProductModal } from "./ProductModal";
 
 export function ProductCard({
   producto,
@@ -17,6 +19,8 @@ export function ProductCard({
   const { has, toggle } = useQuote();
   const selected = has(producto.id);
   const agotado = producto.disponibilidad === "agotado";
+  const [open, setOpen] = useState(false);
+  const nFotos = producto.imagenes.length;
 
   return (
     <article
@@ -55,8 +59,20 @@ export function ProductCard({
             />
           </div>
         )}
+        {/* Overlay clickeable → abre el detalle */}
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={`Ver detalles de ${producto.nombre}`}
+          className="absolute inset-0 z-10 flex items-end justify-center bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100"
+        >
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-ink shadow-sm">
+            <Eye className="h-4 w-4" /> Ver detalles
+          </span>
+        </button>
+
         {mostrarStock && (
-          <div className="absolute left-3 top-3">
+          <div className="absolute left-3 top-3 z-20">
             <StockBadge
               estado={producto.disponibilidad}
               inventario={producto.inventario}
@@ -64,8 +80,13 @@ export function ProductCard({
             />
           </div>
         )}
+        {nFotos > 1 && (
+          <span className="absolute right-3 top-3 z-20 inline-flex items-center gap-1 rounded-full bg-black/45 px-2 py-0.5 text-[0.65rem] font-semibold text-white/90 backdrop-blur-sm">
+            <Images className="h-3 w-3" /> {nFotos}
+          </span>
+        )}
         {producto.sku && (
-          <span className="label absolute bottom-3 right-3 rounded bg-black/35 px-2 py-0.5 text-[0.6rem] text-white/85 backdrop-blur-sm">
+          <span className="label absolute bottom-3 right-3 z-20 rounded bg-black/35 px-2 py-0.5 text-[0.6rem] text-white/85 backdrop-blur-sm">
             {producto.sku}
           </span>
         )}
@@ -76,9 +97,15 @@ export function ProductCard({
         {producto.categorias[0] && (
           <span className="label text-magenta-500">{producto.categorias[0]}</span>
         )}
-        <h3 className="mt-2 line-clamp-2 font-medium leading-snug text-ink">
-          {producto.nombre}
-        </h3>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="mt-2 text-left"
+        >
+          <h3 className="line-clamp-2 font-medium leading-snug text-ink transition-colors hover:text-magenta-600">
+            {producto.nombre}
+          </h3>
+        </button>
         {producto.marca && (
           <p className="mt-1 text-sm text-support">{producto.marca}</p>
         )}
@@ -125,6 +152,14 @@ export function ProductCard({
           </p>
         )}
       </div>
+
+      {open && (
+        <ProductModal
+          producto={producto}
+          mostrarStock={mostrarStock}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </article>
   );
 }

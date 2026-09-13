@@ -329,6 +329,7 @@ function toProducto(r: Row): Producto {
     inventario: r.inventario,
     bajoInventario: r.bajo,
     imagen: null, // sin foto en muestra → placeholder de marca en la UI
+    imagenes: [], // la muestra no trae fotos
     categorias: r.cats.map(catNombre),
     disponibilidad: calcDisponibilidad(r.inventario, r.bajo),
   };
